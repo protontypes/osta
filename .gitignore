@@ -181,3 +181,5 @@ ipython_config.py
 *.json
 
 images/*
+*.csv
+*.html
