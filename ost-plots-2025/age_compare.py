@@ -52,7 +52,7 @@ def load_older_data(csv_path, ref_date_current=None, ref_date_old=None):
 # ---------- PLOTTING FUNCTION ----------
 
 def plot_age_histogram_comparison(df_current, df_old,
-                                  title="Project Age Distribution (2022 vs Current, Age-Adjusted)",
+                                  title="Project Age Distribution (2022 vs 2025 )",
                                   palette=None, figsize=(10,6), show=True):
     """Plot overall project age histogram for current vs old datasets with age offset."""
     if palette is None:
@@ -76,11 +76,11 @@ def plot_age_histogram_comparison(df_current, df_old,
 
     # Plot older data (age-adjusted)
     ax.hist(ages_old, bins=bins, color=palette["old"], edgecolor=palette["text"],
-            alpha=0.5, label="Oct 2022 (age-adjusted)", zorder=2)
+            alpha=0.5, label="Oct. 2022 (age-adjusted)", zorder=2)
 
     # Plot current data
     ax.hist(ages_now, bins=bins, color=palette["current"], edgecolor=palette["text"],
-            alpha=0.5, label="Current", zorder=3)
+            alpha=0.5, label="Oct. 2025", zorder=3)
 
     # Add mean/median lines for current data
     mean_age = np.mean(ages_now)
