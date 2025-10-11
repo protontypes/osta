@@ -239,7 +239,7 @@ with tab4:
         font_family="Open Sans",
         font_color="black",
         plot_bgcolor='white',
-        showlegend=False  # hide legend
+        title=" "
     )
 
     # Disable color axis / colorbar
@@ -257,4 +257,3 @@ with tab4:
     )
 
     st.plotly_chart(fig4, use_container_width=True)
-
