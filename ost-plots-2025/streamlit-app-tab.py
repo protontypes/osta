@@ -32,11 +32,10 @@ category_colors = {
 }
 
 # --- Tabs ---
-tab1, tab2, tab3, tab4 = st.tabs([
+tab4, tab3, tab1 = st.tabs([
+    "🌎 Sustainability Ecosystem",
     "📈 Age vs Sub-Category",
-    "📊 Downloads Overview",
     "🏆 Download Ranking",
-    "🌎 Sustainability Ecosystem"
 ])
 
 # ==========================
@@ -100,50 +99,6 @@ with tab1:
     )
 
     st.plotly_chart(fig1, use_container_width=True)
-
-# ==========================
-# TAB 2: Downloads Overview
-# ==========================
-with tab2:
-    st.header("📊 Downloads Overview (Last Month)")
-
-    total_downloads = df['downloads_last_month'].sum()
-    avg_downloads = df['downloads_last_month'].mean()
-    top_project = df.loc[df['downloads_last_month'].idxmax(), 'project_names']
-    top_downloads = df['downloads_last_month'].max()
-
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Total Downloads", f"{int(total_downloads):,}")
-    col2.metric("Average per Project", f"{avg_downloads:.1f}")
-    col3.metric("Top Project", f"{top_project} ({int(top_downloads):,})")
-
-    downloads_by_cat = (
-        df.groupby("category")["downloads_last_month"]
-        .sum()
-        .reset_index()
-        .sort_values("downloads_last_month", ascending=False)
-    )
-
-    fig2 = px.bar(
-        downloads_by_cat,
-        x="downloads_last_month",
-        y="category",
-        orientation="h",
-        color="category",
-        color_discrete_map=category_colors,
-        text_auto=".2s",
-        labels={"downloads_last_month": "Downloads (Last Month)", "category": "Category"},
-        title="Downloads by Category",
-        template="plotly_white"
-    )
-    fig2.update_layout(
-        showlegend=False,
-        height=600,
-        title_font=dict(size=28, family="Arial", color="#099ec8"),
-        font=dict(size=18, family="Arial")
-    )
-
-    st.plotly_chart(fig2, use_container_width=True)
 
 # ==========================
 # TAB 3: Download Ranking
